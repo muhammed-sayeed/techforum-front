@@ -1,0 +1,35 @@
+<div class="layout-container">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">COD<span style="color: red;">FORUM</span></div>
+    <div class="nav-links">
+        <button routerLink="/user/login" class="login-btn">Login</button>
+      <!-- <a routerLink="/user/home">Home</a>
+      <a routerLink="/user/profile">Profile</a> -->
+    </div>
+  </nav>
+
+  <div class="main-area">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="side-div-1">
+         <p class="p-one">A public platform building the definitive collection of coding questions & answers</p>
+         <p class="p-two">We're a place where coders share, solve and grow your programing careers.</p>
+         <button class="div-1-btn" routerLink="/user/askqn" >Ask Questions</button>
+        </div>
+        <div class="side-div-2">
+  <a routerLink="/user/home" data-title="Home">🏠 <span>Home</span></a>
+  <a routerLink="/user/threads" data-title="Threads">📝 <span>Tags</span></a>
+  <a routerLink="/user/profile" data-title="Profile">👤 <span>People</span></a>
+  <a routerLink="/user/community" data-title="Community">👥 <span>Community</span></a>
+</div>
+     
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</div>

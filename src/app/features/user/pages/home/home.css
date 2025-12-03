@@ -1,0 +1,339 @@
+.content {
+  flex: 1;                  
+  display: flex;            
+  height: 100%;             
+  overflow: hidden;         /* prevent content scroll */
+}
+
+.home-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* LEFT PART — 80% */
+.div-1 {
+  width: 70%;
+  overflow-y: auto;       /* scrollable */
+  /* padding: 20px; */
+  background: #f7f7f7;
+  scrollbar-width: none; 
+}
+
+.question-card {
+  display: flex;
+  gap: 20px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+}
+
+.q-left {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: row;     /* ← make items horizontal */
+  align-items: center;     /* center vertically */
+  justify-content: flex-start;
+  gap: 6px;                /* space between arrow & count */
+  font-size: 14px;
+  color: #444;
+}
+.stat small {
+  font-size: 13px;
+  color: #666;
+}
+
+.arrow {
+  font-size: 18px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.arrow.up {
+  color: #b0b1b3;
+}
+
+.arrow.down {
+  color: #b0b1b3;
+}
+
+.answers {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* .q-answers {
+  border: 1px solid #3ba164;
+  color: #3ba164;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+} */
+
+.q-right{
+  flex:1;
+}
+
+.q-title {
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #2d2d2d;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.q-title:hover {
+  color: #0a66c2;
+  cursor: pointer;
+}
+.q-tags {
+  margin-bottom: 8px;
+}
+
+.tag {
+  background: #e9f0f5;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+/* USER INFO */
+.q-user {
+  width: 100%;
+  text-align: right !important;
+  font-size: 13px;
+  color: #555;
+  margin-top: 5px;
+}
+
+.q-user * {
+  vertical-align: middle;
+}
+
+.user-name {
+  color: #4c4e50;
+  font-weight: 600;
+}
+
+.user-name:hover {
+  text-decoration: underline;
+}
+
+/* RIGHT PART — 20% */
+.div-2 {
+  width: 30%;
+  background: #fff;
+  /* padding: 20px; */
+  overflow: hidden;       /* no scrolling */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.div-2-1 {
+  width: 180px;
+  padding: 20px;
+  border: 1px solid rgba(48, 47, 47, 0.2);
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* spacing between elements */
+}
+
+/* Icon */
+.div-2-1 .icon {
+  font-size: 28px;
+}
+
+/* Text */
+.card-text {
+  text-align: left;
+  font-size: 15px;
+  color: #222;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+/* Button */
+.card-btn {
+  padding: 8px 12px;
+  border: 1px solid #2f8f48;
+  background: white;
+  color: #2f8f48;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;           /* full width like the image */
+  transition: all 0.5s ease;
+}
+
+.card-btn:hover {
+  background: #30C41F; /* slight green hover */
+  color: white;
+}
+
+.div-2-2 {
+  width: 180px;
+  height: 200px;
+  padding: 20px;
+  border: 1px solid rgba(48, 47, 47, 0.2);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title */
+.tag-title {
+  margin: 0;
+  padding-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+
+/* Tag container */
+.tag-list {
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* Tag Chips */
+.tag-item {
+  display: inline-block;
+  background: #e9f0f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #333;
+}
+
+.q-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin: 6px 0 10px 0;
+}
+
+.q-desc * {
+  display: inline !important;
+  white-space: nowrap;
+}
+
+.q-desc p {
+  display: inline;
+  margin: 0;
+}
+
+.bottom-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;   /* <-- This is the important fix */
+  margin-top: 6px;
+  gap: 10px;
+  width: 100%;
+}
+
+/* TAGS */
+.tag-div {
+  display: flex;
+  /* flex-wrap: wrap;            */
+  gap: 6px;
+  max-width: 75%;            /* gives user block space to stay right */
+}
+
+/* Individual tag */
+.tag {
+  background: #e3eef7;
+  color: #27567a;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* USER (RIGHT SIDE) */
+.q-user {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;       /* aligns username + date properly */
+  white-space: nowrap;
+  margin-left: auto;         /* push to right */
+  font-size: 13px;
+  color: #555;
+}
+
+.q-user .asked {
+  margin-left: 6px;
+}
+
+
+/* ========= SMALL SCREENS (PHONE/TABLET) ============ */
+@media (max-width: 900px) {
+
+  /* Hide right sidebar */
+  .div-2 {
+    display: none;
+  }
+
+  /* Make question section full width */
+  .div-1 {
+    width: 100%;
+    padding: 10px;     
+  }
+
+  .question-card {
+    flex-direction: column;   /* Stack content vertically */
+    gap: 10px;
+  }
+
+  .q-left {
+    flex-direction: row;      /* Votes | answers | views horizontally */
+    justify-content: start;
+    width: 100%;
+  }
+
+  .q-right {
+    width: 100%;
+  }
+
+  .q-title {
+    font-size: 16px;      /* slightly smaller for mobile */
+    line-height: 1.3;
+  }
+
+  .q-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;     /* show 1 line only */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.4em;
+}
+}

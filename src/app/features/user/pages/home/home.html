@@ -1,0 +1,79 @@
+<section class="content">
+  <div class="home-container">
+    <div class="div-1">
+
+      <!-- LOOP OVER QUESTIONS -->
+     <div class="question-card" *ngFor="let q of Questions()">
+  
+  <!-- LEFT STATS -->
+  <div class="q-left">
+    <div class="stat">
+      <span class="arrow up">▲</span>
+      <span>{{ q.upvoteCount }}</span>
+    </div>
+
+    <div class="stat">
+      <span class="answers">{{ q.answer.length }}</span>
+      <small>answers</small>
+    </div>
+
+    <div class="stat">
+      <span class="arrow down">▼</span>
+      <span>{{ q.downvoteCount }}</span>
+    </div>
+  </div>
+
+  <!-- RIGHT CONTENT -->
+  <div class="q-right">
+    <a class="q-title" [innerHTML]="q.titlehtml"></a>
+
+    <p class="q-desc" [innerHTML]="q.body"></p>
+   
+  <div class="bottom-div">
+
+  <!-- LEFT: Tags -->
+  <div class="tag-div" *ngIf="q.tags && q.tags.length > 0">
+    <span class="tag" *ngFor="let tag of q.tags">
+      {{ tag.name }}
+    </span>
+  </div>
+
+  <!-- RIGHT: User -->
+  <div class="q-user">
+    <span class="user-name">{{ q.user.username }}</span>
+    <span class="asked"> asked{{ q.createdAt | date:'mediumDate' }}</span>
+  </div>
+
+</div>
+
+    
+  </div>
+
+</div>
+
+    </div>
+
+    <div class="div-2">
+
+      <div class="div-2-1">
+        <div class="icon">🔍</div>
+        <p class="card-text">
+          Find the best answer to <br>
+          your technical question, <br>
+          help others answer <br>
+          theirs.
+        </p>
+        <button class="card-btn">Explore Community</button>
+      </div>
+
+      <div class="div-2-2">
+        <h3 class="tag-title">Top Tags</h3>
+        <div class="tag-list">
+          <span class="tag-item">#javascript</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
