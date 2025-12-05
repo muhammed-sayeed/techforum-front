@@ -1,20 +1,41 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
+import { Routes } from '@angular/router';
 import { UserLayout } from '../../shared/layouts/user-layout/user-layout';
+import { guestGuard } from '../../core/guards/guest-guard';
 
-const routes: Routes = [
+export const userRoutes: Routes = [
   {
     path: 'login',
-    loadComponent: ()=> import('./pages/login/login').then(m => m.Login)
+    canActivate: [guestGuard],
+    loadComponent: () => import('./pages/login/login').then(m => m.Login)
   },
   {
-    path:'',
+    path: 'register',
+    canActivate: [guestGuard],
+    loadComponent: () => import('./pages/register/register').then(m => m.Register)
+  },
+  {
+    path: '',
     component: UserLayout,
     children: [
       {
         path: 'home',
-        loadComponent: ()=> import('./pages/home/home').then(m => m.Home)
+        loadComponent: () => import('./pages/home/home').then(m => m.Home)
+      },
+      {
+        path: 'ask-question',
+        loadComponent: () => import('./pages/ask-qn/ask-qn').then(m => m.AskQn)
+      },
+      {
+        path: 'question/:id',
+        loadComponent: ()=> import('./pages/single-qn/single-qn').then(m => m.SingleQn)
+      },
+      {
+        path: 'tags',
+        loadComponent: () => import('./pages/tags/tags').then(m => m.Tags)
+      },
+      {
+        path: 'tag-questions/:id',
+        loadComponent:() => import('./pages/tag-questions/tag-questions').then(m => m.TagQuestions)
       },
       {
         path: '',
@@ -24,9 +45,3 @@ const routes: Routes = [
     ]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class UserRoutingModule { }

@@ -1,1 +1,210 @@
-<p>ask-qn works!</p>
+<section class="ask-question-container">
+
+  <div class="ask-question-content">
+    
+    <h1 class="page-title">Ask a Public Question</h1>
+    
+    <div class="form-container">
+      
+      <!-- Title Section -->
+      <div class="form-group">
+        <label for="title" class="form-label">
+          Title<span class="required">*</span>
+        </label>
+        <p class="form-hint">
+          Be specific and imagine you're asking a question to another person. Min 15 characters.
+        </p>
+        <input
+          id="title"
+          type="text"
+          class="form-input"
+          [class.error]="titleError()"
+          [value]="title()"
+          (input)="onTitleChange($any($event.target).value)"
+          placeholder="e.g. How do I implement lazy loading in Angular?"
+          maxlength="150"
+        />
+        <div class="char-count">{{ title().length }}/150</div>
+        <div class="error-message" *ngIf="titleError()">
+          {{ titleError() }}
+        </div>
+      </div>
+
+      <!-- Body Section with Quill Editor -->
+      <div class="form-group">
+        <label for="body" class="form-label">
+          Body<span class="required">*</span>
+        </label>
+        <p class="form-hint">
+          Include all the information someone would need to answer your question. Min 220 characters.
+        </p>
+        <quill-editor
+          [modules]="quillModules"
+          (onContentChanged)="onBodyChange($event)"
+          placeholder="Describe your problem in detail..."
+          [styles]="{ height: '300px', width: '674px' }"
+        ></quill-editor>
+        <div class="error-message" *ngIf="bodyError()">
+          {{ bodyError() }}
+        </div>
+      </div>
+
+<!-- Tags Section -->
+<div class="form-group">
+  <label for="tags" class="form-label">
+    Tags<span class="required">*</span>
+  </label>
+  <p class="form-hint">
+    Add up to 5 tags to describe what your question is about. Start typing to see suggestions.
+  </p>
+  
+  <!-- Selected Tags -->
+  <div class="selected-tags" *ngIf="selectedTags().length > 0">
+    <span class="tag-chip" *ngFor="let tag of selectedTags()">
+      {{ tag.name }}
+      <button type="button" class="tag-remove" (click)="removeTag(tag)">×</button>
+    </span>
+  </div>
+
+  <!-- Tag Input Wrapper -->
+  <div class="tag-input-wrapper">
+    <input
+      id="tags"
+      type="text"
+      class="form-input"
+      [class.error]="tagsError()"
+      [value]="tagInput()"
+      (input)="onTagInputChange($any($event.target).value)"
+      (keydown)="onTagInputKeydown($event)"
+      placeholder="e.g. (ruby-on-rails asp.net-mvc jquery)"
+      [disabled]="selectedTags().length >= 5"
+    />
+    <span class="loading-spinner" *ngIf="isLoadingTags()">⏳</span>
+    
+    <!-- Tag Suggestions Dropdown -->
+    <div class="tag-dropdown" *ngIf="!isLoadingTags() && suggestedTags().length > 0">
+      <button
+        type="button"
+        class="tag-suggestion-item"
+        *ngFor="let tag of suggestedTags()"
+        (click)="addTag(tag)"
+      >
+        <span class="tag-name">{{ tag.name }}</span>
+        <!-- <span class="tag-description" *ngIf="tag.description">{{ tag.description }}</span> -->
+      </button>
+    </div>
+    
+    <!-- No results message -->
+    <!-- <div class="no-results-wrapper" *ngIf="!isLoadingTags() && tagInput().length >= 2 && suggestedTags().length === 0">
+      <div class="no-results">
+        No matching tags found. Press Enter to create "{{ tagInput() }}"
+      </div>
+    </div> -->
+  </div>
+  
+  <div class="tag-count">{{ selectedTags().length }}/5 tags</div>
+  <div class="error-message" *ngIf="tagsError()">
+    {{ tagsError() }}
+  </div>
+</div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary" (click)="submitQuestion()">
+          Post Your Question
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="discardQuestion()">
+          Discard Draft
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+      <div class="side-bar">
+        <div class="help-card">
+        <h2 class="help-title">Draft your question</h2>
+        <p class="help-description">
+          The community is here to help you with specific coding, algorithm, or language problems.
+        </p>
+
+        <!-- Accordion Items -->
+        <div class="accordion">
+          
+          <!-- Item 1: Summarize the problem -->
+          <div class="accordion-item">
+            <button 
+              class="accordion-header"
+              [class.expanded]="summarizeExpanded()"
+              (click)="toggleSummarize()">
+              <span class="accordion-number">1.</span>
+              <span class="accordion-title">Summarize the problem</span>
+              <span class="accordion-icon">{{ summarizeExpanded() ? '▲' : '▼' }}</span>
+            </button>
+            <div class="accordion-content" *ngIf="summarizeExpanded()">
+              <ul class="help-list">
+                <li>Include details about your goal</li>
+                <li>Describe expected and actual results</li>
+                <li>Include any error messages</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Item 2: Describe what you've tried -->
+          <div class="accordion-item">
+            <button 
+              class="accordion-header"
+              [class.expanded]="describeExpanded()"
+              (click)="toggleDescribe()">
+              <span class="accordion-number">2.</span>
+              <span class="accordion-title">Describe what you've tried</span>
+              <span class="accordion-icon">{{ describeExpanded() ? '▲' : '▼' }}</span>
+            </button>
+            <div class="accordion-content" *ngIf="describeExpanded()">
+              <ul class="help-list">
+                <li>Show what you've tried and tell us what you found</li>
+                <li>Explain why it didn't meet your needs</li>
+                <li>Include any relevant research</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Item 3: Show some code -->
+          <div class="accordion-item">
+            <button 
+              class="accordion-header"
+              [class.expanded]="showCodeExpanded()"
+              (click)="toggleShowCode()">
+              <span class="accordion-number">3.</span>
+              <span class="accordion-title">Show some code</span>
+              <span class="accordion-icon">{{ showCodeExpanded() ? '▲' : '▼' }}</span>
+            </button>
+            <div class="accordion-content" *ngIf="showCodeExpanded()">
+              <ul class="help-list">
+                <li>Include a minimal reproducible example</li>
+                <li>Show what you've tried so far</li>
+                <li>Format your code properly</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Helpful Links -->
+        <div class="helpful-links">
+          <h3 class="links-title">Helpful links</h3>
+          <p class="links-text">
+            Find more information about <a href="#" class="help-link">how to ask a good question here</a>.
+          </p>
+          <p class="links-text">
+            Visit the <a href="#" class="help-link">help center</a>.
+          </p>
+          <p class="links-text">
+            Ask questions about the site on <a href="#" class="help-link">meta</a>.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+</section>

@@ -1,0 +1,193 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 40px;
+  background: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+
+/* LEFT SECTION */
+.signup-left {
+  width: 45%;
+  padding-left: 50px;
+}
+
+.brand-logo {
+  width: 70px;
+  margin-bottom: 10px;
+}
+
+.signup-left h2 {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+.feature {
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.small-text {
+  font-size: 14px;
+  color: #666;
+  margin-top: 30px;
+}
+
+/* RIGHT SECTION */
+.signup-card {
+  width: 420px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.signup-card h2 {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.pass-rule {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #2d6cdf;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.signup-btn:hover {
+  background: #1c54c7;
+}
+
+.divider {
+  margin: 18px 0;
+  height: 1px;
+  background: #e5e5e5;
+}
+
+/* Google */
+.google-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  background: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: not-allowed;
+}
+
+.google-btn img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.p-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.bottom-text {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.bottom-text a {
+  color: #0067d8;
+  text-decoration: none;
+}
+.error {
+  margin-top: 4px;
+  color: #d9534f;
+  font-size: 13px;
+  display: block;        /* ← IMPORTANT */
+}
+
+.error small {
+  display: block;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #d9534f;
+}
+
+
+
+/* ======== RESPONSIVE (Hide left section on small screens) ======== */
+@media (max-width: 900px) {
+
+  /* Hide left side */
+  .signup-left {
+    display: none;
+  }
+
+  /* Make container centered */
+  .signup-container {
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /* Make card full width on mobile */
+  .signup-card {
+    width: 100%;
+    max-width: 380px;
+    padding: 25px;
+  }
+}
+
+/* ======== EXTRA SMALL SCREENS (Mobile phones) ======== */
+@media (max-width: 500px) {
+
+  .signup-container {
+    padding: 15px;
+  }
+
+  .signup-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  input {
+    font-size: 14px;
+    padding: 9px;
+  }
+
+  .signup-btn, .google-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,178 @@
+.tags-page {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+}
+
+/* Header */
+.tags-header h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  max-width: 700px;
+}
+
+/* Controls */
+.tags-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0;
+  gap: 16px;
+}
+
+.search-input {
+  flex: 1;
+  max-width: 320px;
+  padding: 8px 10px;
+  border: 1px solid #c4c8cc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0a95ff;
+  box-shadow: 0 0 0 3px rgba(10, 149, 255, 0.15);
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.sort-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #c4c8cc;
+  background: #f3f3f3;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.sort-btn.active {
+  background: #e3ecf3;
+  border-color: #0a95ff;
+  color: #0a95ff;
+}
+
+/* Tags grid */
+.tags-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  overflow-y: auto;
+  height: 43vh;  
+}
+
+.tags-grid::-webkit-scrollbar{
+    display: none;
+}
+
+.tag-card {
+  border: 1px solid #e3e6e8;
+  border-radius: 6px;
+  padding: 12px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag-header {
+  margin-bottom: 4px;
+}
+
+.tag-name {
+  display: inline-block;
+  background: #e1ecf4;
+  color: #39739d;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag-description {
+  font-size: 13px;
+  color: #3b4045;
+  line-height: 1.4;
+  max-height: 4.2em;        /* roughly 3 lines */
+  overflow: hidden;
+}
+
+.tag-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  font-size: 11px;
+  color: #6a737c;
+}
+
+.meta-item strong {
+  display: block;
+  font-size: 12px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.pagination button {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #c4c8cc;
+  background: #f3f3f3;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-container {
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+.page-btn:disabled {
+  background: #f1f1f1;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 14px;
+  color: #444;
+}
+
+
+/* States */
+.loading,
+.empty {
+  margin-top: 16px;
+  color: #555;
+}

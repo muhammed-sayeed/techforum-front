@@ -1,0 +1,83 @@
+<div class="signup-container">
+
+  <!-- LEFT SIDE -->
+  <div class="signup-left">
+    <!-- <img src="assets/your-logo.png" class="brand-logo"> -->
+
+    <h2><span style="color:#f48024;">Cod</span>Forum</h2>
+
+    <div class="feature">
+      💡 Ask questions, get instant help.
+    </div>
+    <div class="feature">
+      📚 Learn from thousands of real discussions.
+    </div>
+    <div class="feature">
+      🏆 Answer questions and earn reputation
+    </div>
+
+    <!-- <p class="small-text">
+      Collaborate and share knowledge with a private group — <br>
+      your own CodForum Internal for your team.
+    </p> -->
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="signup-card">
+
+    <h2>Create your account</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <!-- USERNAME -->
+  <label>User name</label>
+  <input type="text" formControlName="username" placeholder="Enter a user name">
+
+  <div class="error" *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+    <small *ngIf="username?.errors?.['required']">Username is required.</small>
+    <small *ngIf="username?.errors?.['minlength']">Minimum 4 characters required.</small>
+  </div>
+
+  <!-- EMAIL -->
+  <label>Email</label>
+  <input type="email" formControlName="email" placeholder="you@example.com">
+
+  <div class="error" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+    <small *ngIf="email?.errors?.['required']">Email is required.</small>
+    <small *ngIf="email?.errors?.['email']">Enter a valid email.</small>
+  </div>
+
+  <!-- PASSWORD -->
+  <label>Password</label>
+  <input type="password" formControlName="password" placeholder="Enter a strong password">
+
+  <div class="error" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+    <small *ngIf="password?.errors?.['required']">Password is required.</small>
+    <small *ngIf="password?.errors?.['minlength']">Minimum 6 characters required.</small>
+    <small *ngIf="password?.errors?.['pattern']">Must include 1 letter & 1 number.</small>
+  </div>
+
+  <button class="signup-btn" type="submit" [disabled]="registerForm.invalid">
+    Sign up
+  </button>
+   <div class="divider"></div>
+
+      <!-- Google Login -->
+      <button class="google-btn" disabled>
+        <img src="/google-icon.png">
+        Sign up with Google
+      </button>
+
+</form>
+
+    <div class="p-div">
+ <p class="bottom-text">
+    Already have an account?
+    <a routerLink="/user/login">Login</a>
+  </p>
+    </div>
+   
+
+  </div>
+
+</div>

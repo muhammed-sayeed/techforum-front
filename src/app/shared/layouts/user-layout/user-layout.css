@@ -81,9 +81,9 @@ html, body {
   align-items: center;
 }
 
-.sidebar a:hover {
+/* .sidebar a:hover {
   background:#f5f5f5;
-}
+} */
 
 .side-div-1{
     height: 440px;
@@ -147,8 +147,8 @@ html, body {
   margin-top: 15px;
   flex: 1;
   /* padding: 30px; */
-  background: #f5f5f5;
-  overflow-y: auto; /* CONTENT scrolls */
+  background: white;
+  /* overflow-y: auto;  CONTENT scrolls */
 }
 
 @media (max-width: 900px) {
@@ -181,6 +181,24 @@ html, body {
     justify-content: center;
     padding: 14px 0;
   }
+
+  .logout-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #B2B8B0;
+  cursor: pointer;
+}
+
+.logout-link:hover {
+  color: #8A8F88; /* Slightly darker on hover */
+  cursor: pointer;
+}
+
+.logout-btn {
+  color: #B2B8B0;
+  font-size: 14px;
+}
 
   /* Tooltip styling */
   .side-div-2 a:hover::after {

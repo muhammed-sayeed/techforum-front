@@ -1,12 +1,13 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { UserService } from '../../../../core/services/user-service';
 import { Question } from '../../../../shared/models/question.model';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './home.html',
    styleUrls: ['./home.css']
 })
@@ -21,6 +22,7 @@ export class Home implements OnInit{
   ngOnInit(): void {
     this.loadQuestions();
   }
+  
 
   loadQuestions(){
     this.userservice.getAllQuestions().subscribe({

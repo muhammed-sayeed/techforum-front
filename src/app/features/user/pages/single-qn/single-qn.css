@@ -1,0 +1,491 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.detail-container {
+  width: 100%;
+  max-width: 1264px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.left-dev {
+  flex: 1;
+  width: 500px;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding-right: 16px;
+}
+
+/* Custom scrollbar for left-div */
+.left-dev::-webkit-scrollbar {
+  display: none;
+}
+
+.left-dev::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.left-dev::-webkit-scrollbar-thumb {
+  background: #bbc0c4;
+  border-radius: 10px;
+}
+
+.left-dev::-webkit-scrollbar-thumb:hover {
+  background: #9199a1;
+}
+
+/* QUESTION SECTION */
+.question-section {
+  margin-bottom: 16px;
+}
+
+.question-section h1 {
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 1.35;
+  margin: 0 0 8px 0;
+  color: #3b4045;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* META */
+.q-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e3e6e8;
+}
+
+.q-meta span {
+  color: #6a737c;
+  font-size: 13px;
+}
+
+/* QUESTION BODY */
+.question-body {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.q-votes, .a-votes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+  flex-shrink: 0;
+  width: 48px;
+}
+
+.vote-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #bbc0c4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.1s;
+  flex-shrink: 0;
+}
+
+.vote-btn:hover {
+  background-color: #f48225;
+  color: white;
+}
+
+.vote-count {
+  font-size: 21px;
+  font-weight: 400;
+  color: #6a737c;
+  margin: 4px 0;
+}
+
+.q-content, .a-content {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #232629;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Code blocks */
+.q-content pre, .a-content pre {
+  background: #f6f6f6;
+  border: 1px solid #e3e6e8;
+  padding: 12px;
+  border-radius: 3px;
+  overflow-x: auto;
+  margin: 16px 0;
+  max-width: 100%;
+}
+
+.q-content code, .a-content code {
+  background: #e4e6e8;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+.q-content pre code, .a-content pre code {
+  background: transparent;
+  padding: 0;
+  word-break: normal;
+}
+
+/* Paragraphs */
+.q-content p, .a-content p {
+  margin: 0 0 16px 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.q-content p:last-child, .a-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Long text handling */
+.q-content, .a-content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* TAGS */
+.q-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 16px;
+  margin-left: 64px; /* Align with content, not with vote buttons */
+}
+
+.tag {
+  display: inline-block;
+  background: #e1ecf4;
+  padding: 4.8px 6px;
+  border-radius: 3px;
+  color: #39739d;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.1s, color 0.1s;
+}
+
+.tag:hover {
+  background: #d0e3f1;
+  color: #2c5877;
+}
+
+/* ACTION BUTTONS */
+.q-actions, .a-actions {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+  margin-left: 64px; /* Align with content */
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  color: #6a737c;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.action-btn:hover {
+  color: #3b4045;
+}
+
+/* USER BOX */
+.q-user-box, .a-user-box {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.user-info {
+  background: #d9eaf7;
+  padding: 8px;
+  border-radius: 3px;
+  min-width: 200px;
+}
+
+.user-name {
+  color: #0074cc;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.user-name:hover {
+  color: #0a95ff;
+}
+
+.user-date {
+  font-size: 12px;
+  color: #6a737c;
+  margin-top: 2px;
+}
+
+/* ANSWERS SECTION */
+.answer-section {
+  border-top: 1px solid #e3e6e8;
+  padding-top: 16px;
+  margin-top: 24px;
+}
+
+.answers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.answers-header h2 {
+  font-size: 19px;
+  font-weight: 400;
+  color: #3b4045;
+  margin: 0;
+}
+
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6a737c;
+}
+
+.sort-dropdown label {
+  font-weight: normal;
+}
+
+.sort-dropdown select {
+  padding: 4px 8px;
+  border: 1px solid #bbc0c4;
+  border-radius: 3px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+  color: #3b4045;
+}
+
+.sort-dropdown select:focus {
+  outline: none;
+  border-color: #0a95ff;
+}
+
+.answer-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e3e6e8;
+  align-items: flex-start;
+}
+
+.answer-card:last-child {
+  border-bottom: none;
+}
+
+.a-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ADD ANSWER */
+.add-answer {
+  display: flex;
+  flex-direction: column;  
+  margin-top: 32px;
+  padding-top: 16px;
+  padding-bottom: 32px;
+  border-top: 1px solid #e3e6e8;
+}
+
+.add-answer h3 {
+  font-size: 19px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  color: #3b4045;
+}
+
+.btn-div{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.post-btn {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background: #0a95ff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.4);
+  transition: background-color 0.1s;
+  width: 200px;
+}
+
+.post-btn:hover {
+  background: #0074cc;
+}
+
+.post-btn:active {
+  background: #0063bf;
+}
+
+/* RIGHT SIDEBAR */
+.right-div {
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 50px;
+  align-self: flex-start;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for sidebar */
+.right-div::-webkit-scrollbar {
+  width: 8px;
+}
+
+.right-div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.right-div::-webkit-scrollbar-thumb {
+  background: #d6d9dc;
+  border-radius: 10px;
+}
+
+.right-div::-webkit-scrollbar-thumb:hover {
+  background: #bbc0c4;
+}
+
+.sidebar-widget {
+  background: #faf6f1;
+  border: 1px solid #f1e5bc;
+  border-radius: 3px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.widget-header {
+  background: #fbf3d5;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1e5bc;
+  font-weight: 600;
+  color: #525960;
+  font-size: 12px;
+}
+
+.widget-content {
+  padding: 4px 0;
+}
+
+.widget-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 16px;
+  color: #3b4045;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: background-color 0.1s;
+}
+
+.widget-item:hover {
+  background: rgba(0,0,0,0.03);
+}
+
+.item-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .right-div {
+    display: none;
+  }
+  
+  .detail-container {
+    padding: 16px;
+  }
+
+  .left-dev {
+    padding-right: 0;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .q-tags, .q-actions, .a-actions {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .question-section h1 {
+    font-size: 21px;
+  }
+  
+  .q-votes, .a-votes {
+    width: 36px;
+  }
+  
+  .vote-count {
+    font-size: 18px;
+  }
+
+  .q-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .answers-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .q-tags, .q-actions, .a-actions {
+    margin-left: 0;
+  }
+}

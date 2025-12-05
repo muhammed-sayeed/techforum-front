@@ -18,3 +18,14 @@ export interface Question {
 export interface QuestionResponse {
   questions: Question[];
 }
+
+export interface CreateQuestionRequest {
+  CHtml: string;
+  editorContent: string;
+  tags: string[]; 
+}
+
+export interface CreateQuestionResponse {
+  success: boolean;
+//   message: string;
+}

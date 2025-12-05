@@ -1,1 +1,72 @@
-<p>login works!</p>
+<div class="login-container">
+
+  <!-- Logo -->
+  <!-- <img src="assets/logo.png" class="login-logo"> -->
+
+  <!-- Social login (optional) -->
+  <button class="google-login" disabled >
+    <img src="/google-icon.png"/>
+    Log in with Google
+  </button>
+
+  <div class="divider">or</div>
+
+  <!-- LOGIN CARD -->
+  <div class="login-card">
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+  <!-- Email -->
+  <label>Email</label>
+  <input 
+    type="email" 
+    formControlName="email"
+    placeholder="you@example.com"
+    [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+  />
+
+  <!-- <p class="error" *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+    Email is required.
+  </p> -->
+
+  <!-- <p class="error" *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched">
+    Enter a valid email.
+  </p> -->
+
+  <!-- Password -->
+  <label>Password</label>
+  <div class="password-wrapper">
+    <input 
+      type="password" 
+      formControlName="password"
+      placeholder="Enter password"
+      [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+    />
+  </div>
+
+  <!-- <p class="error" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+    Password is required.
+  </p> -->
+
+  <!-- Login button -->
+  <div class="btn-div">
+    <button class="login-btn" type="submit" [disabled]="loginForm.invalid">
+      Log in
+    </button>
+  </div>
+  
+</form>
+
+
+  </div>
+
+  <p class="bottom-text">
+    Don't have an account?
+    <a routerLink="/user/register">Sign up</a>
+  </p>
+  <p class="bottom-text-1">
+    Forgott your password?
+    <a routerLink="/resetpassword">Reset</a>
+  </p>
+
+</div>

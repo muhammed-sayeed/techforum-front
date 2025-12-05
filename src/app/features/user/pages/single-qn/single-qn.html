@@ -1,0 +1,131 @@
+<section class="detail-container">
+  <div class="left-dev">
+    <!-- ========= QUESTION SECTION ========= -->
+    <div class="question-section">
+
+      <!-- Title -->
+      <h1 [innerHTML]="question()?.titlehtml"></h1>
+
+      <!-- Meta -->
+      <div class="q-meta">
+        <span>Asked {{ question()?.createdAt | date:'mediumDate' }}</span>
+        <!-- <span>Modified {{ question()?.updatedAt | date:'mediumDate' }}</span> -->
+        <!-- <span>Viewed {{ question()?.viewCount }} times</span> -->
+      </div>
+
+      <div class="question-body">
+        <div class="q-votes">
+          <button class="vote-btn">▲</button>
+          <span class="vote-count">
+  {{ (question()?.upvote?.length || 0) - (question()?.downvote?.length || 0) }}
+</span>
+          <button class="vote-btn">▼</button>
+        </div>
+
+        <div class="q-content" [innerHTML]="question()?.body"></div>
+      </div>
+
+      <!-- Tags -->
+      <div class="q-tags">
+        <span class="tag" *ngFor="let t of question()?.tags">{{ t.name }}</span>
+      </div>
+
+      <!-- Action buttons -->
+      <!-- <div class="q-actions">
+        <button class="action-btn">Share</button>
+        <button class="action-btn">Edit</button>
+        <button class="action-btn">Follow</button>
+      </div> -->
+
+      <!-- User Info -->
+      <div class="q-user-box">
+        <div class="user-info">
+          <div class="user-name">{{ question()?.user.username }}</div>
+          <div class="user-date">asked {{ question()?.createdAt | date:'medium' }}</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ========= ANSWERS SECTION ========= -->
+    <div class="answer-section">
+  <div class="answers-header">
+    <h2>{{ answers().length }} Answers</h2>
+  </div>
+
+  <div *ngFor="let ans of answers()" class="answer-card">
+    <div class="a-votes">
+      <button class="vote-btn">▲</button>
+
+      <span class="vote-count">
+        {{ (ans.upvote?.length || 0) - (ans.downvote?.length || 0) }}
+      </span>
+
+      <button class="vote-btn">▼</button>
+    </div>
+
+    <div class="a-body">
+      <div class="a-content" [innerHTML]="ans.body"></div>
+
+      <div class="a-user-box">
+        <div class="user-info">
+          <div class="user-name">{{ ans.user.username }}</div>
+          <div class="user-date">answered {{ ans.createdAt | date:'medium' }}</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+    <!-- ========= ADD ANSWER ========= -->
+    <div class="add-answer">
+      <h3>Your Answer</h3>
+
+      <quill-editor
+        [modules]="quillModules"
+        (onContentChanged)="onAnswerChanged($event)"
+        [styles]="{ height: '250px' }"
+      ></quill-editor>
+      <div class="btn-div">
+<button class="post-btn" (click)="submitAnswer()">Post Your Answer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= RIGHT SIDEBAR ========= -->
+  <div class="right-div">
+    <div class="sidebar-widget">
+      <div class="widget-header">The Overflow Blog</div>
+      <div class="widget-content">
+        <div class="widget-item">
+          <span class="item-icon">✏️</span>
+          <span>Abstraction, but for robots</span>
+        </div>
+        <div class="widget-item">
+          <span class="item-icon">✏️</span>
+          <span>Introducing Stack Overflow AI Assist—a tool for the modern developer</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-header">Featured on Meta</div>
+      <div class="widget-content">
+        <div class="widget-item">
+          <span class="item-icon">💬</span>
+          <span>Chat room owners can now establish room guidelines</span>
+        </div>
+        <div class="widget-item">
+          <span class="item-icon">📋</span>
+          <span>AI Assist is now available on Stack Overflow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
