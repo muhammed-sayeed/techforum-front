@@ -26,8 +26,8 @@
       </div>
 
       <!-- Tags -->
-      <div class="q-tags">
-        <span class="tag" *ngFor="let t of question()?.tags">{{ t.name }}</span>
+      <div class="q-tags" *ngFor="let t of question()?.tags">
+        <a [routerLink]="['/user/tag-questions', t._id]"><span  class="tag" >{{ t.name }}</span></a>       
       </div>
 
       <!-- Action buttons -->

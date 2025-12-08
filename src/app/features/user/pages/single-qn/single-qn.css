@@ -441,6 +441,26 @@ body {
   margin-top: 2px;
 }
 
+::ng-deep .q-content pre,
+::ng-deep .a-content pre {
+  background: #3a3939;
+  color: #e0e0db;
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 14px;
+  margin: 16px 0;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+::ng-deep .q-content code,
+::ng-deep .a-content code {
+  color: #f8f8f2;
+}
+
+
 /* Responsive */
 @media (max-width: 980px) {
   .right-div {

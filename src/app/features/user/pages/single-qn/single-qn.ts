@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, viewChild, ViewChild, signal } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { QuillModule } from 'ngx-quill';
-import { signal } from '@angular/core';
+import { QuillModule, QuillEditorComponent } from 'ngx-quill';
 
 import { UserService } from '../../../../core/services/user-service';
 
 @Component({
   selector: 'app-single-qn',
-  imports: [CommonModule, QuillModule],
+  imports: [CommonModule, QuillModule, RouterModule],
   templateUrl: './single-qn.html',
   styleUrl: './single-qn.css',
 })
 export class SingleQn {
   question = signal<any>(null);
   answers = signal<any[]>([]);
+
+  @ViewChild(QuillEditorComponent) editor!: QuillEditorComponent;
 
   answerContent: string = '';
 
@@ -62,6 +63,9 @@ export class SingleQn {
     if (res.success) {
       this.answers.update(list => [res.answer, ...list]);  // now works
       this.answerContent = '';
+       if (this.editor && this.editor.quillEditor) {
+            this.editor.quillEditor.setText('');  // clears completely
+          }
     }
   },
   error: () => alert("Error submitting answer")

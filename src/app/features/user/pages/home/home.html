@@ -7,19 +7,20 @@
   
   <!-- LEFT STATS -->
   <div class="q-left">
-    <div class="stat">
+    <!-- <div class="stat">
       <span class="arrow up">▲</span>
       <span>{{ q.upvoteCount }}</span>
-    </div>
+    </div> -->
 
     <div class="stat">
       <span class="answers">{{ q.answer.length }}</span>
-      <small>answers</small>
+      <small>{{q.answer.length == 1 ? 'Answer' : 'Answers'}}</small>
     </div>
 
     <div class="stat">
-      <span class="arrow down">▼</span>
-      <span>{{ q.downvoteCount }}</span>
+      <!-- <span class="arrow down"></span> -->
+      <span class="answers">{{ q.upvoteCount }}</span>
+      <small>{{ q.upvoteCount == 1 ? 'up vote' : 'up votes'}}</small>
     </div>
   </div>
 
