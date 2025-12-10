@@ -1,4 +1,9 @@
 <div class="login-container">
+<div class="logo-container">
+  <a routerLink="/">
+    <div class="logo">COD<span style="color: red;">FORUM</span></div>
+  </a>
+</div>
 
   <!-- Logo -->
   <!-- <img src="assets/logo.png" class="login-logo"> -->
@@ -17,7 +22,10 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
   <!-- Email -->
-  <label>Email</label>
+   <div class="div-label">
+      <label>Email</label>
+   </div>
+
   <input 
     type="email" 
     formControlName="email"
@@ -34,15 +42,15 @@
   </p> -->
 
   <!-- Password -->
-  <label>Password</label>
-  <div class="password-wrapper">
+   <div class="div-label">
+     <label>Password</label>
+   </div>
     <input 
       type="password" 
       formControlName="password"
       placeholder="Enter password"
       [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
     />
-  </div>
 
   <!-- <p class="error" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
     Password is required.

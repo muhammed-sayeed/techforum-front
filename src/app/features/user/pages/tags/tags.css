@@ -78,6 +78,7 @@
 .tag-card {
   border: 1px solid #e3e6e8;
   border-radius: 6px;
+  height: 170px;
   padding: 12px;
   background: #fff;
   display: flex;

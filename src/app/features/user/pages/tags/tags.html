@@ -58,12 +58,12 @@
       <div class="tag-meta">
         <!-- You don’t have counts yet, so we fake them using `point` or 0 -->
         <div class="meta-item">
-          <strong>{{ tag.point || 0 }}</strong>
+          <strong>{{ tag.totalQuestions || 0 }}</strong>
           <span>questions</span>
         </div>
         <!-- Placeholder "this week" stats -->
         <div class="meta-item">
-          <strong>0</strong>
+          <strong>{{tag.lastWeekQuestions}}</strong>
           <span>asked this week</span>
         </div>
       </div>
