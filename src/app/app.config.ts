@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideQuillConfig } from 'ngx-quill';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
+import { LoaderInterceptor } from './core/interceptors/loader-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +18,11 @@ export const appConfig: ApplicationConfig = {
       useClass: AuthInterceptor,
       multi: true
     },
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptor,
+    multi: true
+  },
     provideQuillConfig({
       modules: {
         toolbar: [
