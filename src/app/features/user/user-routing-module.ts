@@ -38,6 +38,10 @@ export const userRoutes: Routes = [
         loadComponent:() => import('./pages/tag-questions/tag-questions').then(m => m.TagQuestions)
       },
       {
+        path: 'profile',
+        loadComponent:() => import('./pages/user-profile/user-profile').then(m => m.UserProfile)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

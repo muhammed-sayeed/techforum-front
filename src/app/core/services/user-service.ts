@@ -91,8 +91,8 @@ getTagQuestions(id: string): Observable<any> {
 
 refreshToken(): Observable<any> {
     const refresh = localStorage.getItem('refresh_token');
-
-    return this.http.post(`${this.Api}/global/updatetoken`, { token: refresh })
+    console.log('re==>',refresh)
+    return this.http.post(`${this.Api}/global/updatetoken`, {token:refresh})
       .pipe(
         tap((res: any) => {
           if (res.success && res.token) {

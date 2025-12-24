@@ -12,7 +12,7 @@ import { UserService } from '../../../core/services/user-service';
 })
 export class UserLayout {
 constructor(
-  private router: Router,
+  public router: Router,
   public auth: UserService
 ) {}
 

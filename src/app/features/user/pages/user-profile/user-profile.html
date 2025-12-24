@@ -1,0 +1,70 @@
+<div class="profile-container" *ngIf="user() as u">
+
+  <!-- HEADER -->
+  <div class="profile-header">
+    <div class="avatar"></div>
+
+    <div class="info">
+      <h1>{{ u.name }}</h1>
+      <p class="role">{{ u.role }}</p>
+
+      <div class="meta">
+        <span>📅 Member for {{ u.memberSince }}</span>
+        <!-- <span>👁 Last seen {{ u.lastSeen }}</span>
+        <span>🔥 Visited {{ u.visits }}</span> -->
+      </div>
+
+      <div class="location">📍 {{ u.location }}</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-outline">Edit profile</button>
+    </div>
+  </div>
+  <div class="profile-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <button
+        [class.active]="activeTab() === 'answers'"
+        (click)="setTab('answers')">
+        Answers
+      </button>
+
+      <button
+        [class.active]="activeTab() === 'questions'"
+        (click)="setTab('questions')">
+        Questions
+      </button>
+
+      <button
+        [class.active]="activeTab() === 'articles'"
+        (click)="setTab('articles')">
+        Articles
+      </button>
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="content">
+
+      <!-- ANSWERS -->
+      <ng-container *ngIf="activeTab() === 'answers'">
+        <h2>0 Answers</h2>
+        <div class="empty">You have not answered any questions yet.</div>
+      </ng-container>
+
+      <!-- QUESTIONS -->
+      <ng-container *ngIf="activeTab() === 'questions'">
+        <h2>0 Questions</h2>
+        <div class="empty">You have not asked any questions yet.</div>
+      </ng-container>
+
+      <!-- ARTICLES -->
+      <ng-container *ngIf="activeTab() === 'articles'">
+        <h2>Articles</h2>
+        <div class="empty">No articles published.</div>
+      </ng-container>
+
+    </section>
+  </div>
+</div>
