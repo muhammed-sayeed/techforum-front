@@ -89,6 +89,10 @@ getTagQuestions(id: string): Observable<any> {
   });
 }
 
+getProfile(): Observable<any> {
+  return this.http.get<any>(`${this.Api}/userprofile`);
+}
+
 refreshToken(): Observable<any> {
     const refresh = localStorage.getItem('refresh_token');
     console.log('re==>',refresh)

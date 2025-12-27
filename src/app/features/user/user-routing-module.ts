@@ -42,6 +42,10 @@ export const userRoutes: Routes = [
         loadComponent:() => import('./pages/user-profile/user-profile').then(m => m.UserProfile)
       },
       {
+        path: 'practice',
+        loadComponent:()=> import('./pages/practice/practice').then(m => m.Practice)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

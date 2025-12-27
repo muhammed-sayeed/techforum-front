@@ -64,12 +64,7 @@ export class Register {
       if (res.success) {
         localStorage.setItem('token', res.userdata.token);
         localStorage.setItem('refresh_token', res.userdata.refreshtoken);
-
-        // Optionally store username/email if needed
-        // localStorage.setItem('username', res.userdata.username);
-        // localStorage.setItem('user_email', res.userdata.email);
-
-        // Redirect
+        this.userservice.isAuthenticated.set(true);
         this.router.navigate(['/user/home']);
       }
 
