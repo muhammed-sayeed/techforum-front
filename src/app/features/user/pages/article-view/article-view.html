@@ -1,0 +1,37 @@
+<section class="article-page" *ngIf="article() as a">
+
+  <!-- TITLE -->
+  <h1 class="article-title">
+    {{ a.title }}
+  </h1>
+
+  <!-- META -->
+  <div class="article-meta">
+    <div class="author">
+      <img [src]="a.user.image" alt="author" />
+      <span>{{ a.user.username }}</span>
+    </div>
+    <span class="date">
+      {{ a.createdAt | date:'mediumDate' }}
+    </span>
+  </div>
+
+  <!-- BODY -->
+  <article
+    class="article-body"
+    [innerHTML]="a.body"
+  ></article>
+
+  <!-- LIKE SECTION -->
+  <div class="like-section">
+    <button
+      class="like-btn"
+      [class.liked]="liked()"
+      (click)="toggleLike()"
+    >
+      ❤️ Like
+    </button>
+    <span class="count">{{ likeCount() }} likes</span>
+  </div>
+
+</section>

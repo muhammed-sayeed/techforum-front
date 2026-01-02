@@ -46,6 +46,17 @@ export const userRoutes: Routes = [
         loadComponent:()=> import('./pages/practice/practice').then(m => m.Practice)
       },
       {
+        path: 'community',
+        loadComponent: ()=> import('./pages/community-tab/community-tab').then(m => m.CommunityTab)
+      },
+      {
+        path: 'community-view/:id',
+        loadComponent: ()=> import('./pages/community-view/community-view').then(m => m.CommunityView)
+      },{
+        path: 'article-view/:id',
+        loadComponent: ()=> import('./pages/article-view/article-view').then(m => m.ArticleView)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

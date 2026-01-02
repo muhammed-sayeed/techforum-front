@@ -1,0 +1,122 @@
+<section class="community-view">
+
+  <!-- HEADER -->
+<div class="community-header" *ngIf="community() as c">
+
+  <!-- Logo -->
+  <div class="logo">
+    {{ c.name.charAt(0) }}
+  </div>
+
+  <!-- Info -->
+  <div class="info">
+    <h1>{{ c.name }} Collective</h1>
+
+    <p>
+      {{ c.description }}
+    </p>
+
+    <div class="stats">
+      <span>📌 {{ questions().length }} Questions</span>
+      <span>📰 {{ articles().length }} Articles</span>
+      <span>👥 {{ c.users.length }} Members</span>
+    </div>
+  </div>
+
+  <!-- Join button -->
+  <button class="join-btn">
+    {{ isMember() ? 'Joined' : 'Join collective' }}
+  </button>
+
+</div>
+
+
+  <!-- TABS -->
+  <nav class="tabs">
+    <!-- <button
+      [class.active]="activeTab() === 'overview'"
+      (click)="setTab('overview')"
+    >
+      Overview
+    </button> -->
+
+    <button [class.active]="activeTab() === 'questions'" (click)="setTab('questions')">
+    Questions
+  </button>
+  <button [class.active]="activeTab() === 'articles'" (click)="setTab('articles')">
+    Articles
+  </button>
+
+    <button
+      [class.active]="activeTab() === 'discussions'"
+      (click)="setTab('discussions')"
+    >
+      Discussions
+    </button>
+  </nav>
+
+  <!-- TAB CONTENT -->
+  <section class="tab-content">
+    <div class="left-div">
+     <ng-container *ngIf="activeTab() === 'questions'">
+    <div class="list-item" *ngFor="let q of questions()">
+      <a
+        class="question-link"
+        [routerLink]="['/user/question', q._id]"
+      >
+        <h3 [innerHTML]="q.titlehtml"></h3>
+      </a>
+
+      <p class="preview">
+        {{ truncate(stripHtml(q.body), 120) }}
+      </p>
+
+      <div class="meta">
+        <span class="tag">Javascript</span>
+        <span class="date">{{ q.createdAt | date:'mediumDate' }}</span>
+      </div>
+    </div>
+  </ng-container>
+   <!-- ARTICLES -->
+<div
+  *ngIf="!loading() && activeTab() === 'articles'"
+  class="scroll-area"
+>
+  <div class="list-item" *ngFor="let a of articles()">
+    <a
+      class="article-link"
+      [routerLink]="['/user/article-view', a._id]"
+    >
+      <h3>{{ a.title }}</h3>
+    </a>
+
+    <p class="preview">
+      {{ truncate(stripHtml(a.body), 120) }}
+    </p>
+
+    <div class="meta">
+      <span class="date">{{ a.createdAt | date:'mediumDate' }}</span>
+    </div>
+  </div>
+</div>
+
+    <!-- DISCUSSIONS -->
+    <ng-container *ngIf="activeTab() === 'discussions'">
+      <h2>Discussions</h2>
+      <p>Community discussions will appear here</p>
+    </ng-container>
+    </div>
+    <div class="right-div">
+    <div class="div-2-2">
+        <h3 class="tag-title">Community Tags</h3>
+        <div class="tag-list">
+          <span class="tag-item">#javascript</span>
+        </div>
+      </div>
+    </div>
+
+   
+
+  </section>
+
+</section>

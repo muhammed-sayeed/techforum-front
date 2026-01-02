@@ -1,0 +1,44 @@
+<section class="tags-page">
+
+  <!-- Header -->
+  <header class="tags-header">
+    <h1>Communities for your <br> favorite technologies</h1>
+    <p class="subtitle">
+      Communities help you find trusted answers faster, connect with subject matter experts
+      from the community, <br> and share knowledge around the technologies you use most.
+    </p>
+  </header>
+
+  <!-- Community Grid -->
+  <div class="community-wrapper">
+    <div *ngIf="loading()">Loading communities...</div>
+    <div class="community-grid" *ngIf="!loading()">
+
+      <div class="community-card" *ngFor="let c of communities()">
+        <div class="card-header">
+          <img [src]="c.image" alt="{{ c.name }}" />
+          <div>
+            <h3>
+              <a [routerLink]="['/user/community-view', c._id]" class="community-link">
+                {{ c.name }}
+              </a>
+            </h3>
+            <span class="members">
+              {{ c.users.length }} members
+            </span>
+          </div>
+
+          <button class="join-btn">
+            Join
+          </button>
+        </div>
+
+        <p class="description">
+          {{ c.description }}
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</section>

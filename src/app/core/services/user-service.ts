@@ -10,6 +10,7 @@ import { AuthResponse, LoginResponse } from '../../shared/models/user-auth.model
 import { SingleQuestionResponse } from '../../shared/models/single-question.model';
 import { AddAnswerResponse } from '../../shared/models/answer.model';
 import { TagListResponse } from '../../shared/models/tag.model';
+import { CommunityResponse } from '../../shared/models/communityResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -91,6 +92,22 @@ getTagQuestions(id: string): Observable<any> {
 
 getProfile(): Observable<any> {
   return this.http.get<any>(`${this.Api}/userprofile`);
+}
+
+getcommunityList(): Observable<CommunityResponse> {
+  return this.http.get<CommunityResponse>(`${this.Api}/communitylist`);
+}
+
+getCommunityDetails(id: string): Observable<any> {
+  return this.http.get<any>(`${this.Api}/communitydetails`, {
+    params: { Id: id }
+  });
+}
+
+getArticle(id: string): Observable<any> {
+  return this.http.get<any>(`${this.Api}/singleart`, {
+    params: { Id: id }
+  });
 }
 
 refreshToken(): Observable<any> {

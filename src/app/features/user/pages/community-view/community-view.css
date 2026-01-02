@@ -1,0 +1,199 @@
+.community-view {
+  max-width: 1100px;
+  margin: auto;
+  padding: 24px;
+}
+
+/* HEADER */
+.community-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 0;
+}
+
+.logo {
+  width: 72px;
+  height: 72px;
+  background: #8a7d3b;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.info h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.info p {
+  color: #6a737c;
+  margin: 6px 0;
+  max-width: 700px;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #3b4045;
+  margin-top: 6px;
+}
+
+.join-btn {
+  margin-left: auto;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background: #0a95ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid #e4e6e8;
+  margin-bottom: 24px;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  padding: 10px 4px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #6a737c;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button.active {
+  color: #000;
+  border-bottom-color: #0a95ff;
+  font-weight: 600;
+}
+
+/* CONTENT */
+.tab-content h2 {
+  margin-bottom: 8px;
+}
+
+.card {
+  border: 1px solid #e4e6e8;
+  border-radius: 6px;
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.list-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #e4e6e8;
+}
+
+.question-link {
+  text-decoration: none;
+}
+
+.question-link h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0a95ff;
+  margin: 0;
+}
+
+.preview {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #3b4045;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6a737c;
+}
+
+.tag {
+  background: #e1ecf4;
+  color: #39739d;
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+
+.article-link {
+  text-decoration: none;
+}
+
+.article-link h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #0a95ff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.tab-content {
+  display: grid;
+  grid-template-columns: 1fr 260px; /* left | right */
+  gap: 24px;
+
+  height: calc(100vh - 220px); /* adjust based on header + tabs */
+}
+
+/* LEFT SIDE */
+.left-div {
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* RIGHT SIDE */
+.right-div {
+  flex-shrink: 0;
+}
+
+/* Card on right */
+.div-2-2 {
+  border: 1px solid #e4e6e8;
+  border-radius: 6px;
+  padding: 14px;
+  background: #fff;
+}
+
+/* Sticky right panel (optional but recommended) */
+.right-div {
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+/* Tags */
+.tag-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-item {
+  background: #e1ecf4;
+  color: #39739d;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.left-div::-webkit-scrollbar {
+  display: none;
+}
+
