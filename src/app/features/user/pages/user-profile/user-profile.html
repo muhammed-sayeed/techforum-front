@@ -2,7 +2,9 @@
 
   <!-- HEADER -->
   <div class="profile-header">
-    <div class="avatar"></div>
+    <div class="avatar">
+       {{ u.username.charAt(0) }}
+    </div>
 
     <div class="info">
       <h1>{{ u.username }}</h1>
@@ -63,7 +65,12 @@
   </p>
 
   <div class="meta">
-    <span class="tag">{{ q.tags[0]?.name }}</span>
+    <!-- <a href=""> <span class="tag">{{ q.tags[0]?.name }}</span></a> -->
+     <div class="tag-div" *ngIf="q.tags && q.tags.length > 0">
+    <span [routerLink]="['/user/tag-questions', tag._id]" class="tag" *ngFor="let tag of q.tags">
+      {{ tag.name }}
+    </span>
+  </div>
     <span class="date">
       {{ q.createdAt | date:'mediumDate' }}
     </span>

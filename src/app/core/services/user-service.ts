@@ -110,6 +110,12 @@ getArticle(id: string): Observable<any> {
   });
 }
 
+joinCommunity(id: string): Observable<{success: boolean}> {
+  return this.http.patch<{success: boolean}>(`${this.Api}/joincommunity`, 
+    { Id: id }
+  );
+}
+
 refreshToken(): Observable<any> {
     const refresh = localStorage.getItem('refresh_token');
     console.log('re==>',refresh)

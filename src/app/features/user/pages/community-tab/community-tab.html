@@ -28,9 +28,20 @@
             </span>
           </div>
 
-          <button class="join-btn">
-            Join
-          </button>
+          <button
+  class="join-btn"
+  [disabled]="c.joinLoading || c.isMember"
+  (click)="joinCommunity(c)"
+>
+  <ng-container *ngIf="!c.joinLoading">
+    {{ c.isMember ? 'Joined' : 'Join' }}
+  </ng-container>
+
+  <ng-container *ngIf="c.joinLoading">
+    Joining...
+  </ng-container>
+</button>
+
         </div>
 
         <p class="description">

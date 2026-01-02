@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserService } from '../../../../core/services/user-service';
 import { RouterModule } from '@angular/router';
 
-import { Community } from '../../../../shared/models/communityResponse';
+import { CommunityUI } from '../../../../shared/models/communityResponse';
 
 @Component({
   selector: 'app-community-tab',
@@ -14,7 +14,7 @@ import { Community } from '../../../../shared/models/communityResponse';
 })
 export class CommunityTab implements OnInit{
 
-communities = signal<Community[]>([]);
+communities = signal<CommunityUI[]>([]);
 loading = signal(true);
 
   constructor(
@@ -24,13 +24,66 @@ loading = signal(true);
   ngOnInit(): void {
     this.getList()
   }
-  getList(){
-    this.userservice.getcommunityList().subscribe({
-      next: res => {
-        this.communities.set(res.community);
-        this.loading.set(false);
-      },
-      error: err => console.error(err)
-    })
-  }
+  getList() {
+  this.userservice.getcommunityList().subscribe({
+    next: (res) => {
+      this.communities.set(
+        res.data.map(c => ({
+          ...c,
+          joinLoading: false
+        }))
+      );
+      this.loading.set(false);
+    },
+    error: (err) => {
+      console.error(err);
+      this.loading.set(false);
+    }
+  });
+}
+
+private resetJoinLoading(id: string) {
+  this.communities.update(list =>
+    list.map(item =>
+      item._id === id
+        ? { ...item, joinLoading: false }
+        : item
+    )
+  );
+}
+
+
+joinCommunity(c: CommunityUI) {
+  if (c.isMember || c.joinLoading) return;
+
+  // 1️⃣ set loading = true (signal-safe)
+  this.communities.update(list =>
+    list.map(item =>
+      item._id === c._id
+        ? { ...item, joinLoading: true }
+        : item
+    )
+  );
+
+  // 2️⃣ API call
+  this.userservice.joinCommunity(c._id).subscribe({
+    next: (res: { success: boolean }) => {
+      if (res.success) {
+        this.communities.update(list =>
+          list.map(item =>
+            item._id === c._id
+              ? { ...item, isMember: true, joinLoading: false }
+              : item
+          )
+        );
+      } else {
+        this.resetJoinLoading(c._id);
+      }
+    },
+    error: () => {
+      this.resetJoinLoading(c._id);
+    }
+  });
+}
+
 }

@@ -32,6 +32,8 @@ export class CommunityView implements OnInit{
   articles = signal<Article[]>([]);
   isMember = signal(false);
 
+  joinLoading = signal<boolean>(false);
+
   setTab(tab: CommunityTab){
     this.activeTab.set(tab);
   }
@@ -48,6 +50,29 @@ export class CommunityView implements OnInit{
       error: err => console.error(err)
     })
   }
+
+joinCommunity() {
+  if (this.joinLoading() || this.isMember()) return;
+
+  const communityId = this.community()?._id;
+  if (!communityId) return;
+
+  this.joinLoading.set(true);
+
+  this.userservice.joinCommunity(communityId).subscribe({
+    next: (res: { success: boolean }) => {
+      if (res.success) {
+        this.isMember.set(true); // 🔥 hides the button
+      }
+      this.joinLoading.set(false);
+    },
+    error: () => {
+      this.joinLoading.set(false); // button stays
+    }
+  });
+}
+
+
  
   stripHtml(html = ''): string {
     return html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();

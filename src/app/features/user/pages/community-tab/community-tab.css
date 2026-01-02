@@ -70,14 +70,24 @@
 /* Join button */
 .join-btn {
   margin-left: auto;
-  padding: 6px 12px;
-  font-size: 13px;
   border: 1px solid #0a95ff;
-  background: #fff;
-  color: #0a95ff;
+  background: #0a95ff;
+  color: #fff;
+  padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.2s;
 }
+
+.join-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.join-btn:not(:disabled):hover {
+  background: #0074cc;
+}
+
 
 .join-btn:hover {
   background: #0a95ff;

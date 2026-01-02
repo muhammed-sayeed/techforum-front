@@ -1,5 +1,6 @@
 export interface CommunityResponse {
-  community: Community[];
+  success: boolean;
+  data: Community[];
 }
 
 export interface Community {
@@ -13,4 +14,9 @@ export interface Community {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  isMember: boolean; 
+}
+
+export interface CommunityUI extends Community {
+  joinLoading: boolean;
 }

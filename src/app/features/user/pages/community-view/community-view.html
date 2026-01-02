@@ -24,9 +24,23 @@
   </div>
 
   <!-- Join button -->
-  <button class="join-btn">
-    {{ isMember() ? 'Joined' : 'Join collective' }}
-  </button>
+ <!-- JOIN BUTTON -->
+<button
+  *ngIf="!isMember()"
+  class="join-btn"
+  [disabled]="joinLoading()"
+  (click)="joinCommunity()"
+>
+  <ng-container *ngIf="!joinLoading(); else loadingTpl">
+    Be a member
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    Joining...
+  </ng-template>
+</button>
+
+
 
 </div>
 

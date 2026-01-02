@@ -20,7 +20,6 @@
   color: white;
   font-size: 48px;
   display: flex;
-  align-items: center;
   justify-content: center;
   border-radius: 6px;
 }
@@ -40,7 +39,7 @@
   font-size: 13px;
   color: #555;
   margin-top: 6px;
-  justify-content: end;
+  justify-content: space-between;
 }
 
 .location {
@@ -204,4 +203,21 @@
   transform: scale(1);     
   font-weight: 500;         
   color: #67b2eb;
+}
+
+.tag-div {
+  display: flex;
+  /* flex-wrap: wrap;            */
+  gap: 6px;
+  max-width: 75%;            /* gives user block space to stay right */
+}
+
+.tag {
+  background: #e3eef7;
+  color: #27567a;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
 }
