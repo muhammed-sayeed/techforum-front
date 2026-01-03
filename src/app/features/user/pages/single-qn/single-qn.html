@@ -14,16 +14,38 @@
       </div>
 
       <div class="question-body">
-        <div class="q-votes">
-          <button class="vote-btn">▲</button>
-          <span class="vote-count">
-  {{ (question()?.upvote?.length || 0) - (question()?.downvote?.length || 0) }}
-</span>
-          <button class="vote-btn">▼</button>
-        </div>
+  <div class="q-votes">
 
-        <div class="q-content" [innerHTML]="question()?.body"></div>
-      </div>
+    <!-- UPVOTE -->
+    <button
+      class="vote-btn"
+      [class.active]="question()?.upvoted"
+      [disabled]="voteLoading()"
+      (click)="vote('up')"
+    >
+      ▲
+    </button>
+
+    <!-- COUNT -->
+    <span class="vote-count">
+      {{ (question()?.upvote?.length || 0) - (question()?.downvote?.length || 0) }}
+    </span>
+
+    <!-- DOWNVOTE -->
+    <button
+      class="vote-btn"
+      [class.active]="question()?.downvoted"
+      [disabled]="voteLoading()"
+      (click)="vote('down')"
+    >
+      ▼
+    </button>
+
+  </div>
+
+  <div class="q-content" [innerHTML]="question()?.body"></div>
+</div>
+
 
       <!-- Tags -->
       <div class="q-tags" *ngFor="let t of question()?.tags">
@@ -54,30 +76,49 @@
     <h2>{{ answers().length }} Answers</h2>
   </div>
 
-  <div *ngFor="let ans of answers()" class="answer-card">
-    <div class="a-votes">
-      <button class="vote-btn">▲</button>
+<div *ngFor="let ans of answers()" class="answer-card">
+  <div class="a-votes">
 
-      <span class="vote-count">
-        {{ (ans.upvote?.length || 0) - (ans.downvote?.length || 0) }}
-      </span>
+    <!-- UPVOTE -->
+    <button
+      class="vote-btn"
+      [class.active]="ans.upvoted"
+      [disabled]="voteLoading() === ans._id"
+      (click)="voteAnswer(ans, 'up')"
+    >
+      ▲
+    </button>
 
-      <button class="vote-btn">▼</button>
-    </div>
+    <!-- COUNT -->
+    <span class="vote-count">
+      {{ (ans.upvote?.length || 0) - (ans.downvote?.length || 0) }}
+    </span>
 
-    <div class="a-body">
-      <div class="a-content" [innerHTML]="ans.body"></div>
-
-      <div class="a-user-box">
-        <div class="user-info">
-          <div class="user-name">{{ ans.user.username }}</div>
-          <div class="user-date">answered {{ ans.createdAt | date:'medium' }}</div>
-        </div>
-      </div>
-
-    </div>
+    <!-- DOWNVOTE -->
+    <button
+      class="vote-btn"
+      [class.active]="ans.downvoted"
+      [disabled]="voteLoading() === ans._id"
+      (click)="voteAnswer(ans, 'down')"
+    >
+      ▼
+    </button>
 
   </div>
+
+  <div class="a-body">
+    <div class="a-content" [innerHTML]="ans.body"></div>
+
+    <div class="a-user-box">
+      <div class="user-info">
+        <div class="user-name">{{ ans.user.username }}</div>
+        <div class="user-date">
+          answered {{ ans.createdAt | date:'medium' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 

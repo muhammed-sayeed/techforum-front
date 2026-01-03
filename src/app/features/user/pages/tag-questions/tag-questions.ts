@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../../../../core/services/user-service';
-import { Question } from '../../../../shared/models/question.model';
+import { Question, relatedTags } from '../../../../shared/models/question.model';
 @Component({
   selector: 'app-tag-questions',
   imports: [RouterModule, CommonModule],
@@ -12,6 +12,7 @@ import { Question } from '../../../../shared/models/question.model';
 })
 export class TagQuestions implements OnInit {
   Questions = signal<Question[]>([]);
+  relatedTags = signal<relatedTags[]>([]);
 
   constructor(
     private userservice: UserService,
@@ -21,6 +22,12 @@ export class TagQuestions implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
     this.loadQuestions(id!);
+    this.route.paramMap.subscribe(params => {
+    const tagId = params.get('id');
+    if (tagId) {
+      this.loadQuestions(tagId);
+    }
+  });
   }
   
 
@@ -28,7 +35,7 @@ export class TagQuestions implements OnInit {
     this.userservice.getTagQuestions(id).subscribe({
       next: (res) => {
         this.Questions.set(res.qnlist);
-        console.log('qn', this.Questions)
+        this.relatedTags.set(res.relatedTags);
       },
       error:(err) =>{
         console.error('Error fetching questions:', err);

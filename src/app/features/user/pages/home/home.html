@@ -79,13 +79,16 @@
           help others answer <br>
           theirs.
         </p>
-        <button class="card-btn">Explore Community</button>
+        <button routerLink="/user/community" class="card-btn">Explore Community</button>
       </div>
 
       <div class="div-2-2">
         <h3 class="tag-title">Top Tags</h3>
         <div class="tag-list">
-          <span class="tag-item">#javascript</span>
+          <div class="tag-item" *ngFor="let tag of topTags()">
+           <a [routerLink]="['/user/tag-questions', tag._id]"># {{tag.name}}</a>  
+          </div>
+                 
         </div>
       </div>
 

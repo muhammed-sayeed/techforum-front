@@ -37,7 +37,7 @@ export class UserService {
   }
 
   getAllQuestions(): Observable<QuestionResponse> {
-    return this.http.get<QuestionResponse>(`${this.Api}/global/getqn`);
+    return this.http.get<QuestionResponse>(`${this.Api}/global/gethome`);
   }
 
   searchTags(query: string): Observable<TagResponse> {
@@ -115,6 +115,24 @@ joinCommunity(id: string): Observable<{success: boolean}> {
     { Id: id }
   );
 }
+
+voteQuestion(
+  questionId: string,
+  vote: 'up' | 'down'
+) {
+  return this.http.patch<any>(
+    `${this.Api}/votequestion`,
+    { questionId, vote }
+  );
+}
+
+voteAnswer(answerId: string, vote: 'up' | 'down') {
+  return this.http.patch<any>(
+    `${this.Api}/voteanswer`,
+    { answerId, vote }
+  );
+}
+
 
 refreshToken(): Observable<any> {
     const refresh = localStorage.getItem('refresh_token');

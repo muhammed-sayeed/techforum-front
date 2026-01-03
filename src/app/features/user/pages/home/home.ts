@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { UserService } from '../../../../core/services/user-service';
-import { Question } from '../../../../shared/models/question.model';
+import { Question, topTags } from '../../../../shared/models/question.model';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +14,7 @@ import { Question } from '../../../../shared/models/question.model';
 export class Home implements OnInit{
 
     Questions = signal<Question[]>([]);
+    topTags = signal<topTags[]>([]);
 
   constructor(
     private userservice: UserService
@@ -28,7 +29,7 @@ export class Home implements OnInit{
     this.userservice.getAllQuestions().subscribe({
       next: (res) => {
         this.Questions.set(res.questions);
-        console.log('qn', this.Questions)
+        this.topTags.set(res.topTags);
       },
       error:(err) =>{
         console.error('Error fetching questions:', err);

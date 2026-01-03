@@ -8,7 +8,6 @@
   <!-- LEFT STATS -->
   <div class="q-left">
     <div class="stat">
-      <span class="arrow up">▲</span>
       <span>{{ q.upvoteCount }}</span>
     </div>
 
@@ -18,7 +17,6 @@
     </div>
 
     <div class="stat">
-      <span class="arrow down">▼</span>
       <span>{{ q.downvoteCount }}</span>
     </div>
   </div>
@@ -37,7 +35,7 @@
 
   <!-- LEFT: Tags -->
   <div class="tag-div" *ngIf="q.tags && q.tags.length > 0">
-    <span class="tag" *ngFor="let tag of q.tags">
+    <span [routerLink]="['/user/tag-questions', tag._id]" class="tag" *ngFor="let tag of q.tags">
       {{ tag.name }}
     </span>
   </div>
@@ -67,13 +65,16 @@
           help others answer <br>
           theirs.
         </p>
-        <button class="card-btn">Explore Community</button>
+        <button routerLink="/user/community" class="card-btn">Explore Community</button>
       </div>
 
       <div class="div-2-2">
         <h3 class="tag-title">Related Tags</h3>
         <div class="tag-list">
-          <span class="tag-item">#javascript</span>
+          <div class="tag-item" *ngFor="let tag of relatedTags()">
+           <a [routerLink]="['/user/tag-questions', tag._id]"># {{tag.name}}</a>  
+          </div>
+                 
         </div>
       </div>
 

@@ -14,6 +14,8 @@ import { UserService } from '../../../../core/services/user-service';
 export class SingleQn {
   question = signal<any>(null);
   answers = signal<any[]>([]);
+  voteLoading = signal<boolean>(false);
+  answervoteLoading = signal<boolean>(false);
 
   @ViewChild(QuillEditorComponent) editor!: QuillEditorComponent;
 
@@ -71,6 +73,65 @@ export class SingleQn {
   error: () => alert("Error submitting answer")
 });
 }
+
+vote(type: 'up' | 'down') {
+  if (this.voteLoading()) return;
+
+  const q = this.question();
+  if (!q) return;
+
+  this.voteLoading.set(true);
+
+  this.userservice.voteQuestion(q._id, type).subscribe({
+    next: (res) => {
+      if (res.success) {
+        // IMPORTANT: create NEW object for signal
+        this.question.set({
+          ...q,
+          upvoted: res.voteStatus.upvoted,
+          downvoted: res.voteStatus.downvoted,
+          upvote: new Array(res.counts.upvotes),
+          downvote: new Array(res.counts.downvotes)
+        });
+      }
+      this.voteLoading.set(false);
+    },
+    error: () => {
+      this.voteLoading.set(false);
+    }
+  });
+}
+
+voteAnswer(ans: any, vote: 'up' | 'down') {
+  // block only if THIS answer is loading
+  if (this.answervoteLoading() === ans._id) return;
+
+  this.answervoteLoading.set(ans._id);
+
+  this.userservice.voteAnswer(ans._id, vote).subscribe({
+    next: (res) => {
+      if (res.success) {
+        this.answers.update(list =>
+          list.map(a =>
+            a._id === ans._id
+              ? {
+                  ...a,
+                  upvoted: res.voteStatus.upvoted,
+                  downvoted: res.voteStatus.downvoted,
+                  upvote: new Array(res.counts.upvotes),
+                  downvote: new Array(res.counts.downvotes)
+                }
+              : a
+          )
+        );
+      }
+      this.answervoteLoading.set(false);
+    },
+    error: () => {
+      this.answervoteLoading.set(false);
+    }
+  });
+};
 
   onAnswerChanged(event: any) {
     this.answerContent = event.html;

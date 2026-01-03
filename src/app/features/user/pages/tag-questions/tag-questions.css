@@ -214,16 +214,25 @@
 .tag-list {
   width: 100%;
   margin-top: 15px;
+
+  display: flex;
+  flex-wrap: wrap;          /* allows wrapping */
+  gap: 8px;                 /* space between tags */
+  align-items: flex-start;  /* clean alignment */
 }
 
 /* Tag Chips */
 .tag-item {
-  display: inline-block;
   background: #e9f0f5;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
   font-size: 13px;
-  color: #333;
+  white-space: nowrap;      /* prevent text breaking */
+}
+
+.tag-item a {
+  text-decoration: none;
+  color: #222;
 }
 
 .q-desc {
@@ -274,6 +283,7 @@
   border-radius: 4px;
   font-size: 12px;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 /* USER (RIGHT SIDE) */

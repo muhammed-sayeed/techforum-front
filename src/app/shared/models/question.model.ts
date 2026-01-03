@@ -15,8 +15,22 @@ export interface Question {
   user: UserMini;
 }
 
+export interface topTags {
+  _id: string;
+  name: string;
+  description: string;
+  image: string | null;
+}
+
+export interface relatedTags{
+  count: number;
+  _id: string;
+  name: string;
+} 
+
 export interface QuestionResponse {
   questions: Question[];
+  topTags: topTags[];
 }
 
 export interface CreateQuestionRequest {
