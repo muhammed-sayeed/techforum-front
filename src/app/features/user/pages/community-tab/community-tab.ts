@@ -86,4 +86,9 @@ joinCommunity(c: CommunityUI) {
   });
 }
 
+getRandomColor() {
+  const colors = ['#8a7d3b', '#C9C47D', '#16a34a', '#4BCBE2'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
 }

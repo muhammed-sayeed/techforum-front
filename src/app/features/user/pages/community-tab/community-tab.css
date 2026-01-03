@@ -15,6 +15,19 @@
   font-size: 15px;
 }
 
+.logo {
+  width: 50px;
+  height: 50px;
+  background: #8a7d3b;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
 /* Center wrapper */
 .community-wrapper {
   display: flex;

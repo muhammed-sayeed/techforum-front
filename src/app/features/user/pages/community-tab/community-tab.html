@@ -16,7 +16,9 @@
 
       <div class="community-card" *ngFor="let c of communities()">
         <div class="card-header">
-          <img [src]="c.image" alt="{{ c.name }}" />
+          <div class="logo" [style.background]="getRandomColor()">
+    {{ c.name.charAt(0) }}
+  </div>
           <div>
             <h3>
               <a [routerLink]="['/user/community-view', c._id]" class="community-link">
